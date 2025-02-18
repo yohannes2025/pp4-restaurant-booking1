@@ -10,8 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import django_heroku  # Add this line
 from pathlib import Path
+import dj_database_url
 import os
+from dotenv import load_dotenv
+
+load_dotenv()   # Load environment variables from .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5g=-x22c_unl_r5at2c-%*zd(nzl0w)%m*#k2h5k9rsssi1jth'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,9 +83,11 @@ WSGI_APPLICATION = 'restaurant_booking.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default': dj_database_url.config(
+        default=os.environ.get(
+            'postgresql: // neondb_owner: npg_ZM1uJgwao5Qf@ep-round-violet-a2uhsauy.eu-central-1.aws.neon.tech/dart_task_skid_224096'),
+        conn_max_age=600,
+        ssl_require=True
     }
 }
 
@@ -130,11 +137,19 @@ STATIC_URL = 'static/'
 # Directory where collectstatic will store all static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Optional: Additional locations for static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Add this for Heroku (or other PaaS)
+django_heroku.settings(locals())
+
+# Add crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
