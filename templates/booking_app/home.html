@@ -3,10 +3,16 @@
 block content %}
 <h1>Welcome!</h1>
 <p>Choose a restaurant to book a table:</p>
+
 {% if restaurants %}
 <ul>
   {% for restaurant in restaurants %}
-  <li><a href="{% url 'book_table' %}">{{ restaurant.name }}</a></li>
+  <li>
+    <a href="{% url 'book_table' restaurant_id=restaurant.id %}"
+      >{{ restaurant.name }}</a
+    >
+  </li>
+  <!-- Corrected URL, passing restaurant ID -->
   {% endfor %}
 </ul>
 {% else %}
