@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'booking_app',  # Add this
     # 'crispy_forms',  # Add for form styling
     # 'crispy_bootstrap5',  # Add for bootstrap5 theme
-    "whitenoise.runserver_nostatic",
-    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
@@ -53,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'restaurant_booking.urls'
