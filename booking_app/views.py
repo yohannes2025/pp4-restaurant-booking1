@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm  # Import
 from django.urls import reverse
 from .models import Booking, Table, Restaurant
 from .forms import BookingForm
+from .models import Restaurant
 
 
 def home(request):
