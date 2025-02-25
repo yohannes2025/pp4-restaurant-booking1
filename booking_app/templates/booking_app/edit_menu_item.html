@@ -1,0 +1,29 @@
+<h2>Edit Menu Item: {{ item.name }}</h2>
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="name" value="{{ item.name }}" required />
+  <textarea name="description">{{ item.description }}</textarea>
+  <input
+    type="number"
+    name="price"
+    value="{{ item.price }}"
+    step="0.01"
+    required
+  />
+  <label>
+    <input
+      type="checkbox"
+      name="available"
+      {%
+      if
+      item.available
+      %}
+      checked
+      {%
+      endif
+      %}
+    />
+    Available
+  </label>
+  <button type="submit">Update Menu Item</button>
+</form>

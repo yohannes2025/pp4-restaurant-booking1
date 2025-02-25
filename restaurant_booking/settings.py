@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5g=-x22c_unl_r5at2c-%*zd(nzl0w)%m*#k2h5k9rsssi1jth'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
 
@@ -140,3 +140,14 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Example for console backend (development)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# For production, you would set up your actual email service
+# EMAIL_HOST = ...
+# EMAIL_PORT = ...
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = ...
+# EMAIL_HOST_PASSWORD = ...
+# DEFAULT_FROM_EMAIL = 'your_email@example.com'
